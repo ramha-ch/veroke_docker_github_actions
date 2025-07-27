@@ -1,17 +1,19 @@
 name: CI/CD Pipeline
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main  # Trigger only on main branch
 
 env:
-  IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
-  DOCKER_TAG: ${{ secrets.DOCKER_TAG }}
-  
+  IMAGE_NAME: my-image  # You can also use a secret if needed
+  DOCKER_TAG: latest
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -20,7 +22,7 @@ jobs:
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-image:latest .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }} .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-image:latest
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
