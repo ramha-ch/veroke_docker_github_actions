@@ -31,3 +31,9 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.DOCKER_TAG }}
+
+      - name: Debug secrets (for testing only, then delete)
+        run: |
+        echo "Username: ${{ secrets.DOCKERHUB_USERNAME }}"
+        echo "Password is set: ${{ secrets.DOCKERHUB_PASSWORD != '' }}"
+
