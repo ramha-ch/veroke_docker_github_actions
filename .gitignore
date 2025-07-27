@@ -1,0 +1,20 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore .env files (secrets)
+.env
+
+# Ignore Docker-related
+*.log
+*.pid
+docker-compose.override.yml
+
+# Ignore IDE/editor settings
+.vscode/
+.idea/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
