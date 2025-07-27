@@ -8,13 +8,9 @@ else
   exit 1
 fi
 
-docker build -t $IMAGE_NAME .
+docker pull $DOCKERHUB_USERNAME/$IMAGE_NAME:$DOCKER_TAG
 
-docker tag $IMAGE_NAME $DOCKERHUB_USERNAME/$IMAGE_NAME:$DOCKER_TAG
+docker-compose down
+docker-compose up -d
 
-echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-
-docker push $DOCKERHUB_USERNAME/$IMAGE_NAME:$DOCKER_TAG
-
-echo "✅ Image pushed to DockerHub."
-
+echo "✅ Deployment successful."
