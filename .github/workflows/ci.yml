@@ -34,6 +34,5 @@ jobs:
 
       - name: Debug secrets (for testing only, then delete)
         run: |
-        echo "Username: ${{ secrets.DOCKERHUB_USERNAME }}"
-        echo "Password is set: ${{ secrets.DOCKERHUB_PASSWORD != '' }}"
-
+          echo "Username: ${{ secrets.DOCKERHUB_USERNAME }}"
+          echo "Password is set: ${{ secrets.DOCKERHUB_PASSWORD != '' }}"
