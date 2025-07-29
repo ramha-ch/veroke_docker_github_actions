@@ -7,18 +7,11 @@ WORKDIR /app
 # ✅ Install system dependencies in one clean layer
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    gcc \
-    default-libmysqlclient-dev \
     curl \
+    default-libmysqlclient-dev \
+    gcc \
     pkg-config && \
     rm -rf /var/lib/apt/lists/*
-
-
-
-
-
-
-
 
 # ✅ Copy and install Python dependencies
 COPY requirements.txt .
